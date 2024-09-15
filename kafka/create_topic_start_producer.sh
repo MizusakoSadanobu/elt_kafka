@@ -5,6 +5,3 @@ bin/kafka-topics.sh --create --topic news --bootstrap-server localhost:9092
 
 # Start producer
 bin/kafka-console-producer.sh   --bootstrap-server localhost:9092   --topic news
-
-# create producer
-bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic bankbranch

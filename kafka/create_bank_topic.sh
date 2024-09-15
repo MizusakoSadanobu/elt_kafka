@@ -8,3 +8,7 @@ bin/kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 # check the details of the topic bankbranch
 bin/kafka-topics.sh --bootstrap-server localhost:9092 --describe --topic bankbranch
+
+# create producer
+# bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic bankbranch
+bin/kafka-console-producer.sh --bootstrap-server localhost:9092 --topic bankbranch --property parse.key=true --property key.separator=:
