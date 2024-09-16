@@ -1,12 +1,10 @@
 from kafka import KafkaConsumer
+consumer = KafkaConsumer('bankbranch',
+                        group_id=None,
+                         bootstrap_servers=['localhost:9092'],
+                         auto_offset_reset = 'earliest')
+print("Hello")
+print(consumer)
 
-def main():
-    consumer = KafkaConsumer(
-            'test', 
-            bootstrap_servers=['{Docker HostのIPアドレス}:{Port}'])
-
-    for message in consumer:
-        print("x = " + message.value.decode())
-
-if __name__ == '__main__':
-    main()
+for msg in consumer:
+    print(msg.value.decode("utf-8"))
