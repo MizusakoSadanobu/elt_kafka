@@ -40,7 +40,7 @@ extract_data_from_csv = BashOperator(
 
 # task: extract_data_from_tsv
 extract_data_from_tsv = BashOperator(
-    task_id='extract_data_from_csv',
+    task_id='extract_data_from_tsv',
     bash_command="cut -d$'\t' -f5-7 /home/project/airflow/dags/finalassignment/tollplaza-data.tsv"\
     " | sed 's/\t/,/g' > /home/project/airflow/dags/finalassignment/tsv_data.csv",
     dag=dag,
@@ -50,7 +50,7 @@ extract_data_from_tsv = BashOperator(
 extract_data_from_fixed_width = BashOperator(
     task_id='extract_data_from_fixed_width',
     bash_command="cut -c1-10,51-60 /home/project/airflow/dags/finalassignment/payment-data.txt"\
-    " | awk '{print $1 "," $2}' > /home/project/airflow/dags/finalassignment/fixed_width_data.csv",
+    """ | awk '{print $1 "," $2}' > /home/project/airflow/dags/finalassignment/fixed_width_data.csv""",
     dag=dag,
 )
 
@@ -66,7 +66,7 @@ consolidate_data = BashOperator(
 
 # task: transform_data
 transform_data = BashOperator(
-    task_id='transform_data ',
+    task_id='transform_data',
     bash_command="""awk -F',' '{print $1 "," $2 "," $3 "," toupper($4) "," $5 "," $6 "," $7}' """\
     "/home/project/airflow/dags/finalassignment/extracted_data.csv"\
     " > /home/project/airflow/dags/finalassignment/transformed_data.csv",
